@@ -81,3 +81,12 @@ resource "azurerm_network_interface" "nic" {
 
   network_security_group_id = azurerm_network_security_group.nsg.id
 }
+
+resource "azurerm_storage_account" "sa" {
+  name                     = "fabmedicald${var.suffix}diag"
+  resource_group_name      = azurerm_resource_group.resource_group.name
+  location                 = azurerm_resource_group.resource_group.location
+  account_kind             = "Storage"
+  account_replication_type = "LRS"
+  account_tier             = "Standard"
+}
