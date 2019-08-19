@@ -325,7 +325,6 @@ resource "azurerm_cosmosdb_account" "db" {
   offer_type          = "Standard"
 
   geo_location {
-    prefix            = "fabmedical-${var.suffix}-westeurope"
     location          = "westeurope"
     failover_priority = 0
   }
@@ -338,4 +337,8 @@ resource "azurerm_cosmosdb_account" "db" {
 
   enable_multiple_write_locations   = false
   is_virtual_network_filter_enabled = false
+}
+
+output "linux_login" {
+  value = "ssh -i <private-key-path> adminfabmedical@${azurerm_public_ip.linux_pip.ip_address}"
 }
