@@ -18,6 +18,11 @@ variable "create_dev_machine" {
   default     = false
 }
 
+variable "kubeconfig_path" {
+  description = "full path to save the kubeconfig in (e.g. /root/.kube/mycluster.yaml). make sure to add this file to KUBECONFIG (e.g. export KUBECONFIG=$KUBECONFIG:/root/.kube/mycluster.yaml) in order to add it to your list of clusters"
+}
+
+
 
 variable "client_id" {}
 
@@ -339,6 +344,42 @@ resource "azurerm_cosmosdb_account" "db" {
   is_virtual_network_filter_enabled = false
 }
 
+resource "local_file" "kubeconfig" {
+  # kube config
+  filename = var.kubeconfig_path
+  content  = azurerm_kubernetes_cluster.aks.kube_config_raw
+}
+
+resource "azurerm_application_insights" "content_web" {
+  name                = "content_web"
+  location            = "West Europe"
+  resource_group_name = azurerm_resource_group.resource_group.name
+  application_type    = "web"
+}
+
+output "content_web_app_insights_instrumentation_key" {
+  value = azurerm_application_insights.content_web.instrumentation_key
+}
+
+resource "azurerm_application_insights" "content_api" {
+  name                = "content_api"
+  location            = "West Europe"
+  resource_group_name = azurerm_resource_group.resource_group.name
+  application_type    = "web"
+}
+
+output "content_api_app_insights_instrumentation_key" {
+  value = azurerm_application_insights.content_api.instrumentation_key
+}
+
 output "linux_login" {
   value = "ssh -i <private-key-path> adminfabmedical@${azurerm_public_ip.linux_pip.ip_address}"
+}
+
+output "acr_login" {
+  value = "docker login ${azurerm_container_registry.registry.login_server} -u ${azurerm_container_registry.registry.admin_username} -p ${azurerm_container_registry.registry.admin_password}"
+}
+
+output "kube_config_raw" {
+  value = azurerm_kubernetes_cluster.aks.kube_config_raw
 }
