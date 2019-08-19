@@ -298,3 +298,4 @@ __pycache__/
 # .tfvars files
 *.tfvars
 *.hcl
+terraform/FabMedical.tgz

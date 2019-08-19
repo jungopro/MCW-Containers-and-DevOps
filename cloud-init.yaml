@@ -8,6 +8,7 @@ packages:
 - curl
 - software-properties-common
 - gnupg-agent
+- python-software-properties
 
 users:
 - name: ubuntu
@@ -22,9 +23,14 @@ users:
 runcmd:
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
   - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
   - apt-get update -y
-  - apt-get install -y docker-ce docker-ce-cli containerd.io
+  - apt-get install -y docker-ce docker-ce-cli containerd.io nodejs mongodb-clients
   - systemctl start docker
   - systemctl enable docker
+  - sudo apt-get upgrade -y
+  - sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+  - sudo chmod +x /usr/local/bin/docker-compose
+  - npm install -g bower
 
 final_message: "The system is finally up, after $UPTIME seconds"
