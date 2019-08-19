@@ -24,43 +24,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 **Contents**
 
-<!-- TOC -->
-
-- [Containers and DevOps - Developer edition hands-on lab step-by-step](#Containers-and-DevOps---Developer-edition-hands-on-lab-step-by-step)
-  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
-  - [Overview](#Overview)
-  - [Solution architecture](#Solution-architecture)
-  - [Requirements](#Requirements)
-  - [Exercise 1: Create and run a Docker application](#Exercise-1-Create-and-run-a-Docker-application)
-    - [Task 1: Test the application](#Task-1-Test-the-application)
-    - [Task 2: Browsing to the web application](#Task-2-Browsing-to-the-web-application)
-    - [Task 3: Create a Dockerfile](#Task-3-Create-a-Dockerfile)
-    - [Task 4: Create Docker images](#Task-4-Create-Docker-images)
-    - [Task 5: Run a containerized application](#Task-5-Run-a-containerized-application)
-    - [Task 6: Setup environment variables](#Task-6-Setup-environment-variables)
-    - [Task 7: Push images to Azure Container Registry](#Task-7-Push-images-to-Azure-Container-Registry)
-  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#Exercise-2-Deploy-the-solution-to-Azure-Kubernetes-Service)
-    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#Task-1-Tunnel-into-the-Azure-Kubernetes-Service-cluster)
-    - [Task 2: Deploy a service using the Kubernetes management dashboard](#Task-2-Deploy-a-service-using-the-Kubernetes-management-dashboard)
-    - [Task 3: Deploy a service using kubectl](#Task-3-Deploy-a-service-using-kubectl)
-    - [Task 4: Deploy a service using a Helm chart](#Task-4-Deploy-a-service-using-a-Helm-chart)
-    - [Task 5: Initialize database with a Kubernetes Job](#Task-5-Initialize-database-with-a-Kubernetes-Job)
-    - [Task 6: Test the application in a browser](#Task-6-Test-the-application-in-a-browser)
-    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#Task-7-Configure-Continuous-Delivery-to-the-Kubernetes-Cluster)
-    - [Task 8: Review Azure Monitor for Containers](#Task-8-Review-Azure-Monitor-for-Containers)
-  - [Exercise 3: Scale the application and test HA](#Exercise-3-Scale-the-application-and-test-HA)
-    - [Task 1: Increase service instances from the Kubernetes dashboard](#Task-1-Increase-service-instances-from-the-Kubernetes-dashboard)
-    - [Task 2: Increase service instances beyond available resources](#Task-2-Increase-service-instances-beyond-available-resources)
-    - [Task 3: Restart containers and test HA](#Task-3-Restart-containers-and-test-HA)
-  - [Exercise 4: Setup load balancing and service discovery](#Exercise-4-Setup-load-balancing-and-service-discovery)
-    - [Task 1: Scale a service without port constraints](#Task-1-Scale-a-service-without-port-constraints)
-    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#Task-2-Update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
-    - [Task 3: Adjust CPU constraints to improve scale](#Task-3-Adjust-CPU-constraints-to-improve-scale)
-    - [Task 4: Perform a rolling update](#Task-4-Perform-a-rolling-update)
-    - [Task 5: Configure Kubernetes Ingress](#Task-5-Configure-Kubernetes-Ingress)
-  - [After the hands-on lab](#After-the-hands-on-lab)
-
-<!-- /TOC -->
+<!-- TOC -->autoauto- [Containers and DevOps - Developer edition hands-on lab step-by-step](#containers-and-devops---developer-edition-hands-on-lab-step-by-step)auto  - [Abstract and learning objectives](#abstract-and-learning-objectives)auto  - [Overview](#overview)auto  - [Solution architecture](#solution-architecture)auto  - [Requirements](#requirements)auto  - [Exercise 1: Create and run a Docker application](#exercise-1-create-and-run-a-docker-application)auto    - [Task 1: Test the application](#task-1-test-the-application)auto    - [Task 2: Browsing to the web application](#task-2-browsing-to-the-web-application)auto    - [Task 3: Create a Dockerfile](#task-3-create-a-dockerfile)auto    - [Task 4: Create Docker images](#task-4-create-docker-images)auto    - [Task 5: Run a containerized application](#task-5-run-a-containerized-application)auto    - [Task 6: Setup environment variables](#task-6-setup-environment-variables)auto    - [Task 7: Push images to Azure Container Registry](#task-7-push-images-to-azure-container-registry)auto  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#exercise-2-deploy-the-solution-to-azure-kubernetes-service)auto    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#task-1-tunnel-into-the-azure-kubernetes-service-cluster)auto    - [Task 2: Deploy a service using the Kubernetes management dashboard](#task-2-deploy-a-service-using-the-kubernetes-management-dashboard)auto    - [Task 3: Deploy a service using kubectl](#task-3-deploy-a-service-using-kubectl)auto    - [Task 4: Deploy a service using a Helm chart](#task-4-deploy-a-service-using-a-helm-chart)auto    - [Task 5: Initialize database with a Kubernetes Job](#task-5-initialize-database-with-a-kubernetes-job)auto    - [Task 6: Test the application in a browser](#task-6-test-the-application-in-a-browser)auto    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#task-7-configure-continuous-delivery-to-the-kubernetes-cluster)auto    - [Task 8: Review Azure Monitor for Containers](#task-8-review-azure-monitor-for-containers)auto  - [Exercise 3: Scale the application and test HA](#exercise-3-scale-the-application-and-test-ha)auto    - [Task 1: Increase service instances from the Kubernetes dashboard](#task-1-increase-service-instances-from-the-kubernetes-dashboard)auto    - [Task 2: Increase service instances beyond available resources](#task-2-increase-service-instances-beyond-available-resources)auto    - [Task 3: Restart containers and test HA](#task-3-restart-containers-and-test-ha)auto  - [Exercise 4: Setup load balancing and service discovery](#exercise-4-setup-load-balancing-and-service-discovery)auto    - [Task 1: Scale a service without port constraints](#task-1-scale-a-service-without-port-constraints)auto    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#task-2-update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)auto    - [Task 3: Adjust CPU constraints to improve scale](#task-3-adjust-cpu-constraints-to-improve-scale)auto    - [Task 4: Perform a rolling update](#task-4-perform-a-rolling-update)auto    - [Task 5: Configure Kubernetes Ingress](#task-5-configure-kubernetes-ingress)auto  - [After the hands-on lab](#after-the-hands-on-lab)autoauto<!-- /TOC -->
 
 # Containers and DevOps - Developer edition hands-on lab step-by-step
 
@@ -1536,6 +1500,7 @@ In this task, deploy the web service using a helm chart.
 ### Task 5: Initialize database with a Kubernetes Job
 
 In this task, you will use a Kubernetes Job to run a container that is meant to execute a task and terminate, rather than run all the time.
+**Create Azure Pipeline for content-init before executing the steps below**
 
 1. In your WSL window create a text file called init.job.yml using Vim, and press the "i" key to go into edit mode.
 
